@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Wargame</title>
-        <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
         <link rel="stylesheet" href="/css/styles.css" />
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
@@ -76,6 +76,8 @@
 
             </div><!--/.nav-collapse -->
         </div>
+
+        <div id="map"></div>
 
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
