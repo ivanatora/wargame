@@ -24,7 +24,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Wargame</a>
+                <a class="navbar-brand" href="#">
+                    @if (Auth::check())
+                    Wargame - {{ Auth::user()->name }}
+                    @else
+                    Wargame
+                    @endif
+                </a>
             </div>
             <div class="navbar-collapse collapse">
 
@@ -32,8 +38,12 @@
                 <ul class="nav navbar-nav">
                     <!--<li><a href="#">Link</a></li>-->
                     <li>
+                        @if (Auth::check())
+                        <a href="/logout">Logout</a>
+                        @else
                         <a href="#" data-toggle="modal" data-target="#win-register">Register</a>
                         <a href="#" data-toggle="modal" data-target="#win-login">Login</a>
+                        @endif
                     </li>
                     <li>
                         <a href="#">Build <span class="caret"></span></a>
@@ -141,7 +151,49 @@
             </div>
         </div>
 
-        
+        <div id="win-login" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Login</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('login') }}" method="post">
+                            {{ csrf_field() }}
+                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                <label for="register-email">E-mail</label>
+                                <input type="email" name="email" required id="register-email"  class="form-control" value="{{ old('email') }}"/>
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                <label for="register-password">Password</label>
+                                <input type="password" name="password" required id="register-password"  class="form-control"/>
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                Login
+                            </button>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
