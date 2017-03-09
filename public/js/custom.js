@@ -5,6 +5,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18
 }).addTo(map);
 
+var mPlayer = L.marker([0, 0]).addTo(map);
+
 map.locate({setView: true, maxZoom: 16});
 
 //function onLocationFound(e) {
@@ -21,7 +23,8 @@ map.locate({setView: true, maxZoom: 16});
 
 function success(pos){
     console.log('pos', pos)
-    L.marker([pos.coords.latitude, pos.coords.longitude]).addTo(map)
+//    L.marker([pos.coords.latitude, pos.coords.longitude]).addTo(map)
+    mPlayer.setLatLng([pos.coords.latitude, pos.coords.longitude]);
 }
 
 function error(err) {
