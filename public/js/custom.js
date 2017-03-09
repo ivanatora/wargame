@@ -7,14 +7,31 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 map.locate({setView: true, maxZoom: 16});
 
-function onLocationFound(e) {
-    console.log(e)
-    var radius = e.accuracy / 2;
+//function onLocationFound(e) {
+//    console.log(e)
+//    var radius = e.accuracy / 2;
+//
+//    L.marker(e.latlng).addTo(map)
+//        .bindPopup("You are within " + radius + " meters from this point").openPopup();
+//
+//    L.circle(e.latlng, radius).addTo(map);
+//}
+//
+//map.on('locationfound', onLocationFound);
 
-    L.marker(e.latlng).addTo(map)
-        .bindPopup("You are within " + radius + " meters from this point").openPopup();
-
-    L.circle(e.latlng, radius).addTo(map);
+function success(pos){
+    console.log('pos', pos)
+    L.marker([pos.coords.latitude, pos.coords.longitude]).addTo(map)
 }
 
-map.on('locationfound', onLocationFound);
+function error(err) {
+  console.warn('ERROR(' + err.code + '): ' + err.message);
+}
+
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
+navigator.geolocation.watchPosition(success, error, options);
