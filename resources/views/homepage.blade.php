@@ -61,6 +61,27 @@
 
         <div id="map"></div>
 
+        @if (Auth::check())
+        <div class="sidebar-nav-fixed affix" id='resource-bar'>
+            <div class="well">
+                <table class='table table-bordered table-condensed'>
+                    <tr><td>F:</td><td><span id='resources-food'>{{ Auth::user()->food }}</span></td></tr>
+                    <tr><td>W:</td><td><span id='resources-wood'>{{ Auth::user()->wood }}</span></td></tr>
+                    <tr><td>S:</td><td><span id='resources-stone'>{{ Auth::user()->stone }}</span></td></tr>
+                    <tr><td>G:</td><td><span id='resources-gold'>{{ Auth::user()->gold }}</span></td></tr>
+                </table>
+<!--                <ul class="nav ">
+                    <li class="nav-header">Res.</li>
+                    <li>F: <span id='resources-food'>0</span></li>
+                    <li>W: <span id='resources-wood'>0</span></li>
+                    <li>S: <span id='resources-stone'>0</span></li>
+                    <li>G: <span id='resources-gold'>0</span></li>
+                </ul>-->
+            </div>
+            <!--/.well -->
+        </div>
+        @endif
+
         <!-- Modal -->
         @include('dialogs.register')
         @include('dialogs.login')

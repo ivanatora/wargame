@@ -91,6 +91,9 @@ function fnMovePlayer(pos) {
                                 exit: 'animated fadeOutUp'
                             }
                         });
+                        
+                        var iPrevValue = parseInt($('#resources-'+res.data.type).html());
+                        $('#resources-'+res.data.type).html(iPrevValue + res.data.amount);
                     }
                 }
             })

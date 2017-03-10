@@ -10,3 +10,15 @@ html, body, #map {
 .navbar {
     margin-bottom: 3px !important;
 }
+
+#resource-bar {
+    top: 60px;
+    z-index: 9999;
+    right: 10px;
+}
+#resource-bar .well {
+    padding: 5px;
+}
+#resource-bar .well table {
+    margin-bottom: 0;
+}
