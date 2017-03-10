@@ -18,5 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-Route::get('/resources/fetch', 'ResourcesController@fetch');
+Route::get('/resources/display', 'ResourcesController@display');
+Route::get('/resources/grab', 'ResourcesController@grab');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');

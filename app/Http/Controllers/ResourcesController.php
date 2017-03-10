@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use DB;
 use App\ResourceDrop;
+use App\User;
 
 class ResourcesController extends Controller
 {
@@ -18,7 +19,7 @@ class ResourcesController extends Controller
     }
 
     
-    public function fetch(Request $request)
+    public function display(Request $request)
     {
         $lat = $request->input('lat');
         $lng = $request->input('lng');
@@ -71,5 +72,33 @@ class ResourcesController extends Controller
           ) AS distance'))->having('distance', '<', 0.5)->get();
 
         return response()->json(['success' => true, 'data' => $tmp]);
+    }
+
+    public function grab(Request $request)
+    {
+        $id = $request->input('id');
+
+        $oResource = ResourceDrop::find($id);
+
+        if ($oResource){
+            switch ($oResource->type){
+                case 'food': 
+                    DB::table('users')->where('id', Auth::id())->increment('food', $oResource->amount);
+                    break;
+                case 'wood': 
+                    DB::table('users')->where('id', Auth::id())->increment('wood', $oResource->amount);
+                    break;
+                case 'stone': 
+                    DB::table('users')->where('id', Auth::id())->increment('stone', $oResource->amount);
+                    break;
+                case 'gold': 
+                    DB::table('users')->where('id', Auth::id())->increment('gold', $oResource->amount);
+                    break;
+            }
+
+            $oResource->delete();
+        }
+
+        return response()->json(['success' => true, 'data' => $oResource]);
     }
 }

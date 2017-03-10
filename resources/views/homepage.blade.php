@@ -11,6 +11,7 @@
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         <link href="/css/jquery.smartmenus.bootstrap.css" rel="stylesheet">
+        <link href="/css/animate.css" rel="stylesheet">
 
     </head>
     <body>
@@ -45,11 +46,13 @@
                         @endif
                     </li>
                     <li>
+                        @if (Auth::check())
                         <a href="#">Build <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Barracks</a></li>
                             <li><a href="#">Storehouse</a></li>
                         </ul>
+                        @endif
                     </li>
                 </ul>
 
@@ -69,6 +72,7 @@
         <script src="/js/Leaflet.MakiMarkers.js"></script>
         <script src="/js/jquery.smartmenus.js"></script>
         <script src="/js/jquery.smartmenus.bootstrap.js"></script>
+        <script src="/js/bootstrap-notify.js"></script>
         <script src="/js/custom.js"></script>
     </body>
 </html>
