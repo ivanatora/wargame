@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('homepage');
-});
+//Route::get('/', function () {
+//    return view('homepage');
+//});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index');
 Route::get('/resources/display', 'ResourcesController@display');
 Route::get('/resources/grab', 'ResourcesController@grab');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');

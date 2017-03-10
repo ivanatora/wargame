@@ -12,13 +12,32 @@ html, body, #map {
 }
 
 #resource-bar {
-    top: 60px;
-    z-index: 9999;
-    right: 10px;
+    bottom: 10px;
+    z-index: 1000;
+    left: 10px;
 }
 #resource-bar .well {
     padding: 5px;
 }
 #resource-bar .well table {
     margin-bottom: 0;
+    color: #b0b;
+}
+
+.price {
+    color: #b0b;
+}
+
+#win-build .modal-body {
+    max-height: 75vh;
+    overflow: auto;
+}
+#win-build .facade {
+    height: 120px;
+}
+
+
+
+.table>tbody>tr.disabled>td, .table>tbody>tr.disabled>th, .table>tbody>tr>td.disabled, .table>tbody>tr>th.disabled, .table>tfoot>tr.disabled>td, .table>tfoot>tr.disabled>th, .table>tfoot>tr>td.disabled, .table>tfoot>tr>th.disabled, .table>thead>tr.disabled>td, .table>thead>tr.disabled>th, .table>thead>tr>td.disabled, .table>thead>tr>th.disabled {
+    background-color: #aaa;
 }

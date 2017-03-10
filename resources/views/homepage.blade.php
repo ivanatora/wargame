@@ -13,6 +13,9 @@
         <link href="/css/jquery.smartmenus.bootstrap.css" rel="stylesheet">
         <link href="/css/animate.css" rel="stylesheet">
 
+        <script>
+            var aBuildingTypes = <?= json_encode($building_types);?>;
+        </script>
     </head>
     <body>
         <!-- Navbar -->
@@ -47,11 +50,12 @@
                     </li>
                     <li>
                         @if (Auth::check())
-                        <a href="#">Build <span class="caret"></span></a>
+                        <a href="#" data-toggle='modal' data-target='#win-build'>Build</a>
+<!--                        <a href="#">Build <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Barracks</a></li>
                             <li><a href="#">Storehouse</a></li>
-                        </ul>
+                        </ul>-->
                         @endif
                     </li>
                 </ul>
@@ -70,21 +74,14 @@
                     <tr><td>S:</td><td><span id='resources-stone'>{{ Auth::user()->stone }}</span></td></tr>
                     <tr><td>G:</td><td><span id='resources-gold'>{{ Auth::user()->gold }}</span></td></tr>
                 </table>
-<!--                <ul class="nav ">
-                    <li class="nav-header">Res.</li>
-                    <li>F: <span id='resources-food'>0</span></li>
-                    <li>W: <span id='resources-wood'>0</span></li>
-                    <li>S: <span id='resources-stone'>0</span></li>
-                    <li>G: <span id='resources-gold'>0</span></li>
-                </ul>-->
             </div>
-            <!--/.well -->
         </div>
         @endif
 
         <!-- Modal -->
         @include('dialogs.register')
         @include('dialogs.login')
+        @include('dialogs.build')
 
 
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

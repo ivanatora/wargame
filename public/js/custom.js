@@ -1,3 +1,7 @@
+$('.table-selectable').on('click', '.clickable-row:not(.disabled)', function (event) {
+    $(this).addClass('active').siblings().removeClass('active');
+});
+
 L.MakiMarkers.accessToken = "pk.eyJ1IjoiaXZhbmF0b3JhIiwiYSI6ImNpazd1dmFpbjAwMDF3MW04MjFlMXJ6czMifQ.jeVzm6JIjhsdc5MRhUsd8w";
 
 var map = L.map('map').fitWorld();
@@ -63,7 +67,6 @@ function fnMovePlayer(pos) {
     oResourceMarkerGroup.eachLayer(function(marker){
         if (typeof marker.options.resource == 'undefined') return;
         var iDistance = marker.getLatLng().distanceTo(oNewPosition);
-        console.log('marker', marker, iDistance)
         if (iDistance < 40){
             var id = marker.options.resource.id;
             
