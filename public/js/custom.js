@@ -12,6 +12,15 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 var mPlayer = L.marker([0, 0]).addTo(map);
 map.locate({setView: true, maxZoom: 16});
 
+var tsLastMapMove = parseInt(Date.now() / 1000);
+
+map.on('zoomend', function(){
+    tsLastMapMove = parseInt(Date.now() / 1000);
+})
+map.on('moveend', function(){
+    tsLastMapMove = parseInt(Date.now() / 1000);
+})
+
 var tsLastResourceDisplay = 0;
 var oResourceMarkerGroup = L.layerGroup().addTo(map);;
 var oResourceCircleMarkerGroup = L.layerGroup().addTo(map);;
@@ -49,15 +58,16 @@ function fnDisplayResources() {
 }
 
 function fnMovePlayer(pos) {
+    var tsNow = parseInt(Date.now() / 1000);
+    
     var oNewPosition = L.latLng(pos.coords.latitude, pos.coords.longitude);
-    var iDistance = map.getCenter().distanceTo(oNewPosition);
+//    var iDistance = map.getCenter().distanceTo(oNewPosition);
 
-    if (iDistance > 300) {
+    if (tsNow - tsLastMapMove > 15) {
         map.panTo(oNewPosition);
     }
     mPlayer.setLatLng(oNewPosition);
 
-    var tsNow = parseInt(Date.now() / 1000);
     if (tsNow - tsLastResourceDisplay > 10) {
         tsLastResourceDisplay = tsNow;
         fnDisplayResources();
