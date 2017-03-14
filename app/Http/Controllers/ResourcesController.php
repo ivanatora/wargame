@@ -12,8 +12,8 @@ use App\User;
 
 class ResourcesController extends Controller
 {
-//    public $aRecourceTypes = ['food', 'wood', 'stone', 'gold'];
-    public $aRecourceTypes = ['food', 'gold'];
+    public $aRecourceTypes = ['food', 'wood', 'stone', 'gold'];
+//    public $aRecourceTypes = ['food', 'gold'];
 
     public function __construct()
     {
@@ -52,14 +52,14 @@ class ResourcesController extends Controller
               + sin ( radians('.$lat.') )
               * sin( radians( lat ) )
             )
-          ) AS distance'))->having('distance', '<', 1)->get();
+          ) AS distance'))->having('distance', '<', 2)->get();
 //        Log::info('res', ['r' => $tmp]);
 
-        if ($tmp->count() < 20) {
-            for ($i = 0; $i < 20 - $tmp->count(); $i++) {
+        if ($tmp->count() < 100) {
+            for ($i = 0; $i < 100 - $tmp->count(); $i++) {
                 $oRecord               = new ResourceDrop();
-                $oRecord->lat          = rand($lat * 1000000 - 6 * 1000, $lat * 1000000 + 6 * 1000) / 1000000;
-                $oRecord->lng          = rand($lng * 1000000 - 6 * 1000, $lng * 1000000 + 6 * 1000) / 1000000;
+                $oRecord->lat          = rand($lat * 1000000 - 20000, $lat * 1000000 + 20000) / 1000000;
+                $oRecord->lng          = rand($lng * 1000000 - 20000, $lng * 1000000 + 20000) / 1000000;
                 $oRecord->amount       = rand(1, 5);
                 $oRecord->date_expires = date('Y-m-d H:i:s', strtotime('+1 hour'));
                 $oRecord->type         = $this->aRecourceTypes[array_rand($this->aRecourceTypes)];
@@ -81,7 +81,7 @@ class ResourcesController extends Controller
               + sin ( radians('.$lat.') )
               * sin( radians( lat ) )
             )
-          ) AS distance'))->having('distance', '<', 1)->get();
+          ) AS distance'))->having('distance', '<', 2)->get();
 
         return response()->json(['success' => true, 'data' => $tmp]);
     }
