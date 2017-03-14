@@ -93,26 +93,24 @@ class ResourcesController extends Controller
         $bSuccess = false;
 
         $oResource = ResourceDrop::find($id);
+        $oUser = User::find(Auth::id());
 
         if ($oResource) {
             switch ($oResource->type) {
                 case 'food':
-                    DB::table('users')->where('id', Auth::id())->increment('food',
-                        $oResource->amount);
+                    $oUser->food += $oResource->amount;
                     break;
                 case 'wood':
-                    DB::table('users')->where('id', Auth::id())->increment('wood',
-                        $oResource->amount);
+                    $oUser->wood += $oResource->amount;
                     break;
                 case 'stone':
-                    DB::table('users')->where('id', Auth::id())->increment('stone',
-                        $oResource->amount);
+                    $oUser->stone += $oResource->amount;
                     break;
                 case 'gold':
-                    DB::table('users')->where('id', Auth::id())->increment('gold',
-                        $oResource->amount);
+                    $oUser->gold += $oResource->amount;
                     break;
             }
+            $oUser->save();
 
             $oRecord          = new ResourceGrab();
             $oRecord->user_id = Auth::id();
