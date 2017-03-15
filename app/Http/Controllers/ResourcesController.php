@@ -55,8 +55,8 @@ class ResourcesController extends Controller
           ) AS distance'))->having('distance', '<', 2)->get();
 //        Log::info('res', ['r' => $tmp]);
 
-        if ($tmp->count() < 100) {
-            for ($i = 0; $i < 100 - $tmp->count(); $i++) {
+        if ($tmp->count() < 150) {
+            for ($i = 0; $i < 150 - $tmp->count(); $i++) {
                 $oRecord               = new ResourceDrop();
                 $oRecord->lat          = rand($lat * 1000000 - 20000, $lat * 1000000 + 20000) / 1000000;
                 $oRecord->lng          = rand($lng * 1000000 - 20000, $lng * 1000000 + 20000) / 1000000;

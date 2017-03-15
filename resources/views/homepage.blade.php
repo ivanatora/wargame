@@ -63,9 +63,9 @@
             </div><!--/.nav-collapse -->
         </div>
 
-        <div id="map"></div>
 
         @if (Auth::check())
+        <div id="map"></div>
         <div class="sidebar-nav-fixed affix" id='resource-bar'>
             <div class="well">
                 <table class='table table-bordered table-condensed'>
@@ -75,6 +75,11 @@
                     <tr><td>G:</td><td><span id='resources-gold'>{{ Auth::user()->gold }}</span></td></tr>
                 </table>
             </div>
+        </div>
+        @else
+        <div class="col-md-4 text-center" style="height: 100vh; line-height: 100vh; background-image: url(/img/wallpaper.png)">
+            <button data-toggle="modal" data-target="#win-register" class="btn btn-default">Register</button>
+            <button data-toggle="modal" data-target="#win-login" class="btn btn-primary">Login</button>
         </div>
         @endif
 
