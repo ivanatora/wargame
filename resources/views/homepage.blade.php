@@ -78,7 +78,7 @@
         </div>
         @else
         <div class="col-md-4 text-center" style="height: 100vh; line-height: 100vh; background-image: url(/img/wallpaper.png)">
-            <button data-toggle="modal" data-target="#win-register" class="btn btn-default">Register</button>
+            <button data-toggle="modal" data-target="#win-register" class="btn btn-info">Register</button>
             <button data-toggle="modal" data-target="#win-login" class="btn btn-primary">Login</button>
         </div>
         @endif
